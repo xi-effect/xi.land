@@ -1,0 +1,14 @@
+name: Production Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-deploy:
+    # needs: prepare
+    uses: xi-effect/xieffect-actions/.github/workflows/docker-full.yml@main
+    with:
+      tag: lands
+      images: lands
+    secrets: inherit
