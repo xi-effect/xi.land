@@ -1,11 +1,12 @@
 /* eslint-disable react/display-name */
 import React, { forwardRef, useCallback } from 'react';
 import { useSnackbar, SnackbarContent } from 'notistack';
-import { Stack, Button, Card, Typography } from '@mui/material';
+import { Stack, Button, Card, Typography, useMediaQuery, Theme } from '@mui/material';
 import { useLocalStorage } from 'react-use';
 
 const CustomCookieShackbar = forwardRef<HTMLDivElement, { id?: string | number }>((props, ref) => {
   const { closeSnackbar } = useSnackbar();
+  const mobile400: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down(400));
 
   // eslint-disable-next-line no-unused-vars
   const [valueLS, setValueLS] = useLocalStorage('cookies-agree');
@@ -16,12 +17,19 @@ const CustomCookieShackbar = forwardRef<HTMLDivElement, { id?: string | number }
   }, [closeSnackbar, props.id, setValueLS]);
 
   return (
-    <SnackbarContent ref={ref}>
+    <SnackbarContent
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      ref={ref}
+    >
       <Card
         sx={{
           borderRadius: '12px',
           boxShadow: 'none',
-          height: '56px',
+          minHeight: '56px',
           bgcolor: 'grayscale.0',
         }}
       >
@@ -33,27 +41,33 @@ const CustomCookieShackbar = forwardRef<HTMLDivElement, { id?: string | number }
           justifyContent="center"
           alignItems="center"
         >
-          <Typography
-            sx={{
-              fontWeight: 500,
-              fontSize: '18px',
-              lineHeight: '22px',
-              ml: '12px',
-            }}
+          <Stack
+            direction={mobile400 ? "column" : "row"}
+            justifyContent="center"
+            alignItems="center"
           >
-            Мы используем
-          </Typography>
-          <Typography
-            sx={{
-              fontWeight: 500,
-              fontSize: '18px',
-              lineHeight: '22px',
-              ml: '4px',
-              color: 'primary.dark',
-            }}
-          >
-            cookies
-          </Typography>
+            <Typography
+              sx={{
+                fontWeight: 500,
+                fontSize: '18px',
+                lineHeight: '22px',
+                ml: '12px',
+              }}
+            >
+              Мы используем
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: 500,
+                fontSize: '18px',
+                lineHeight: '22px',
+                ml: '4px',
+                color: 'primary.dark',
+              }}
+            >
+              cookies
+            </Typography>
+          </Stack>
           <Button
             sx={{
               height: '48px',

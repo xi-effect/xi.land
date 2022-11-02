@@ -49,6 +49,11 @@ const Main = inject(
     const { enqueueSnackbar } = useSnackbar();
     const [valueLS] = useLocalStorage('cookies-agree');
 
+    const mobile1920: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down(1920));
+    const mobile1336: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down(1336));
+    const mobile1000: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down(1000));
+    const mobilesm: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+
     React.useEffect(() => {
       if (!valueLS) {
         setTimeout(() => {
@@ -58,18 +63,13 @@ const Main = inject(
             persist: true,
             anchorOrigin: {
               vertical: 'bottom',
-              horizontal: 'center',
+              horizontal: mobile1000 ? 'center' : 'right',
             },
             TransitionComponent: Slide,
           });
         }, 2000);
       }
     }, []);
-
-    const mobile1920: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down(1920));
-    const mobile1336: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down(1336));
-    const mobile1000: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down(1000));
-    const mobilesm: boolean = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
     const getDeviceWidth = () => {
       if (mobilesm) return 'min480';
