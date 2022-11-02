@@ -83,7 +83,7 @@ const Header = () => {
       </Box>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={0.5}>
         <Button
-          onClick={() => window.open('https://startupfellows.ru/vacancy/3995')}
+          onClick={() => window.open('https://vacancy.xieffect.ru/')}
           sx={{
             width: button1Width[deviceWidth],
             height: buttonsHeight[deviceWidth],
