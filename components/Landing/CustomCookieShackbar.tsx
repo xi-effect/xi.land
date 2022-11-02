@@ -1,7 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { forwardRef, useCallback } from 'react';
 import { useSnackbar, SnackbarContent } from 'notistack';
-import CookieIcon from '@mui/icons-material/Cookie';
 import { Stack, Button, Card, Typography } from '@mui/material';
 import { useLocalStorage } from 'react-use';
 
@@ -20,38 +19,58 @@ const CustomCookieShackbar = forwardRef<HTMLDivElement, { id?: string | number }
     <SnackbarContent ref={ref}>
       <Card
         sx={{
-          borderRadius: 8,
-          boxShadow: 24,
-          height: 64,
-          // width: 456,
-          bgcolor: 'secondary.dark',
+          borderRadius: '12px',
+          boxShadow: 'none',
+          height: '56px',
+          bgcolor: 'grayscale.0',
         }}
       >
         <Stack
           sx={{
-            p: 2,
+            p: '4px',
           }}
           direction="row"
           justifyContent="center"
           alignItems="center"
-          spacing={2}
         >
-          <CookieIcon fontSize="large" />
-          <Typography>Этот сайт использует Печенье (Cookies) </Typography>
-          <Button
+          <Typography
             sx={{
-              width: 128,
-              borderRadius: 8,
+              fontWeight: 500,
+              fontSize: '18px',
+              lineHeight: '22px',
+              ml: '12px',
             }}
-            variant="contained"
-            onClick={handleDismiss}
           >
-            Подробнее
-          </Button>
+            Мы используем
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: 500,
+              fontSize: '18px',
+              lineHeight: '22px',
+              ml: '4px',
+              color: 'primary.dark',
+            }}
+          >
+            cookies
+          </Typography>
           <Button
             sx={{
-              width: 72,
-              borderRadius: 8,
+              height: '48px',
+              width: 88,
+              borderRadius: '8px',
+              color: 'grayscale.100',
+              bgcolor: 'grayscale.10',
+              fontWeight: 500,
+              fontSize: '18px',
+              lineHeight: '22px',
+              boxShadow: 'none',
+              textTransform: 'none',
+              ml: '8px',
+              '&:hover': {
+                boxShadow: 'none',
+                color: 'grayscale.0',
+              },
             }}
             variant="contained"
             onClick={handleDismiss}

@@ -10,6 +10,7 @@ import { Provider, observer } from 'mobx-react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
 import 'moment/locale/ru';
+import { useMediaQuery } from '@mui/material';
 
 import { SnackbarProvider } from 'notistack';
 
@@ -36,6 +37,8 @@ const MyApp = observer((props) => {
     [],
   );
 
+  const mobile1000 = useMediaQuery(theme.breakpoints.down(1000));
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -54,7 +57,7 @@ const MyApp = observer((props) => {
           <SnackbarProvider
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'center',
+              horizontal: mobile1000 ? 'center' : 'right',
             }}
             maxSnack={3}
             preventDuplicate

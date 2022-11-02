@@ -216,7 +216,7 @@ const Main = inject(
               sx={{
                 width: '134px',
                 height: '5px',
-                backgroundColor: 'gray.100',
+                backgroundColor: 'grayscale.100',
                 borderRadius: '100px',
               }}
             />
