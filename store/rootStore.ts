@@ -4,21 +4,26 @@ import { action, makeObservable } from 'mobx';
 import { enableStaticRendering } from 'mobx-react';
 import { useMemo } from 'react';
 import Router from 'next/router';
+import AuthorizationSt from './user/authorizationSt';
 
 enableStaticRendering(typeof window === 'undefined');
 
 let store;
 
 type MethodT = 'GET' | 'POST' | 'DELETE' | 'PATCH';
-class RootStore {
 
+class RootStore {
   url = process.env.NEXT_PUBLIC_SERVER_URL;
 
+  authorizationSt: AuthorizationSt;
+
   constructor() {
+    this.authorizationSt = new AuthorizationSt(this);
+
     makeObservable(this);
   }
 
-  @action fetchData = async (url: string, method: MethodT, data?: any) => {
+  @action fetchData = async (url: string, method: MethodT, data?: unknown) => {
     try {
       let response: null | Response = null;
       if (data != null) {
@@ -44,7 +49,7 @@ class RootStore {
       }
       if (response?.status === 401 || response?.status === 403 || response?.status === 422) {
         const router = Router;
-        await router.push('/signin');
+        await router.push('/');
         return null;
       }
       if (response?.ok) {
@@ -75,8 +80,9 @@ function initializeStore(initialData = null) {
   return _store;
 }
 
-export function useStore(initialState) {
+export function useStoreInitialized(initialState) {
   const store = useMemo(() => initializeStore(initialState), [initialState]);
   return store;
 }
+
 export default RootStore;

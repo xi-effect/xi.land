@@ -5,7 +5,9 @@ import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Provider, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
+
+import { StoreProvider } from 'store/connect';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
@@ -17,7 +19,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import 'styles/globals.css';
 
-import { useStore } from 'store/rootStore';
+import { useStoreInitialized } from 'store/rootStore';
 import createEmotionCache from 'store/createEmotionCache';
 import { getDesignTokens } from 'theme';
 
@@ -30,7 +32,8 @@ const clientSideEmotionCache = createEmotionCache();
 const MyApp = observer((props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-  const rootStore = useStore(pageProps.initialState);
+  const rootStore = useStoreInitialized(pageProps.initialState);
+
   const theme = React.useMemo(
     () => createTheme(getDesignTokens('light')), // Только светлая тема
     [],
@@ -45,10 +48,7 @@ const MyApp = observer((props) => {
         />
       </Head>
       {/* MobX Provider */}
-      <Provider
-        rootStore={rootStore}
-        uiSt={rootStore.uiSt}
-      >
+      <StoreProvider value={rootStore}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <SnackbarProvider
@@ -63,7 +63,7 @@ const MyApp = observer((props) => {
             <Component {...pageProps} />
           </SnackbarProvider>
         </ThemeProvider>
-      </Provider>
+      </StoreProvider>
     </CacheProvider>
   );
 });
