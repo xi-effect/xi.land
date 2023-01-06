@@ -87,7 +87,7 @@ const Main = observer(() => {
           zIndex: 1,
           margin: 0,
           overflow: 'auto',
-          minHeight: mobilesm ? 'calc(100vh - 14px)' : '100vh',
+          minHeight: '100vh',
           height: '100%',
           bgcolor: 'primary.pale',
           position: 'relative',
@@ -97,12 +97,6 @@ const Main = observer(() => {
         <Header />
         <Box
           sx={{
-            zIndex: 1,
-            margin: 0,
-            overflow: 'auto',
-            minHeight: '100vh',
-            height: '100%',
-            bgcolor: 'primary.pale',
             position: 'relative',
             mt: t1MarginTop[deviceWidth],
             width: '100%',
