@@ -11,7 +11,6 @@ let store;
 
 type MethodT = 'GET' | 'POST' | 'DELETE' | 'PATCH';
 class RootStore {
-
   url = process.env.NEXT_PUBLIC_SERVER_URL;
 
   constructor() {

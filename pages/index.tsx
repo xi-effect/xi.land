@@ -1,15 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import {
-  Divider,
-  Button,
-  Box,
-  Slide,
-  Stack,
-  Typography,
-  Theme,
-  useMediaQuery,
-} from '@mui/material';
+import { Button, Box, Slide, Stack, Typography, Theme, useMediaQuery } from '@mui/material';
 
 import { inject, observer } from 'mobx-react';
 import { motion } from 'framer-motion';
@@ -100,7 +91,7 @@ const Main = inject(
             zIndex: 1,
             margin: 0,
             overflow: 'auto',
-            minHeight: mobilesm ? 'calc(100vh - 14px)' : '100vh',
+            minHeight: '100vh',
             height: '100%',
             bgcolor: 'primary.pale',
             position: 'relative',
@@ -202,26 +193,6 @@ const Main = inject(
             Войти
           </Button>
         </Stack>
-        {mobilesm && (
-          <Stack
-            direction="column"
-            justifyContent="flex-start"
-            alignItems="center"
-            sx={{
-              width: '100%',
-              height: '14px',
-            }}
-          >
-            <Divider
-              sx={{
-                width: '134px',
-                height: '5px',
-                backgroundColor: 'grayscale.100',
-                borderRadius: '100px',
-              }}
-            />
-          </Stack>
-        )}
       </>
     );
   }),

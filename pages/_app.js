@@ -45,10 +45,7 @@ const MyApp = observer((props) => {
         />
       </Head>
       {/* MobX Provider */}
-      <Provider
-        rootStore={rootStore}
-        uiSt={rootStore.uiSt}
-      >
+      <Provider rootStore={rootStore} uiSt={rootStore.uiSt}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <SnackbarProvider

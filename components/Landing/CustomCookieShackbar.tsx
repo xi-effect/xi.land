@@ -42,7 +42,7 @@ const CustomCookieShackbar = forwardRef<HTMLDivElement, { id?: string | number }
           alignItems="center"
         >
           <Stack
-            direction={mobile400 ? "column" : "row"}
+            direction={mobile400 ? 'column' : 'row'}
             justifyContent="center"
             alignItems="center"
           >
