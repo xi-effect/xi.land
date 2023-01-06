@@ -192,15 +192,14 @@ const Main = observer(() => {
               '&:hover': {
                 boxShadow: 'none',
               },
-            }}
-          >
-            Войти
-          </Button>
-        </Stack>
-      </>
-    );
-  }),
-);
-
+            },
+          }}
+        >
+          Войти
+        </Button>
+      </Stack>
+    </>
+  );
+});
 
 export default Main;
